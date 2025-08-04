@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar Power Prediction - Home</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for Inter font */
+        body {
+            font-family: "Inter", sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-100 to-indigo-200 min-h-screen flex flex-col items-center justify-center p-4">
+
+    <!-- Navigation Bar -->
+    <nav class="w-full max-w-4xl bg-white shadow-lg rounded-xl p-4 mb-8 flex justify-between items-center">
+        <h1 class="text-3xl font-extrabold text-gray-800">Solar Predictor</h1>
+        <a href="/" class="px-6 py-3 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75">
+            Home
+        </a>
+    </nav>
+
+    <!-- Main Content Card -->
+    <div class="w-full max-w-4xl bg-white shadow-xl rounded-xl p-8 md:p-12">
+        <h2 class="text-4xl font-bold text-center text-gray-900 mb-8">Predict Solar Power Output</h2>
+        <p class="text-center text-gray-600 mb-10">
+            Enter the environmental parameters below to get a precise prediction of solar power generation.
+        </p>
+
+        <!-- Prediction Form -->
+        <form action="/solar_predication" method="POST" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Input Field: Temperature -->
+            <div class="flex flex-col">
+                <label for="temperature_2_m_above_gnd" class="text-sm font-medium text-gray-700 mb-1">Temperature (2m above ground)</label>
+                <input type="number" step="any" id="temperature_2_m_above_gnd" name="temperature_2_m_above_gnd" placeholder="e.g., 25.5" required
+                       class="p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 shadow-sm">
+            </div>
+
+            <!-- Input Field: Relative Humidity -->
+            <div class="flex flex-col">
+                <label for="relative_humidity_2_m_above_gnd" class="text-sm font-medium text-gray-700 mb-1">Relative Humidity (2m above ground)</label>
+                <input type="number" step="any" id="relative_humidity_2_m_above_gnd" name="relative_humidity_2_m_above_gnd" placeholder="e.g., 60.2" required
+                       class="p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 shadow-sm">
+            </div>
+
+            <!-- Input Field: Mean Sea Level Pressure -->
+            <div class="flex flex-col">
+                <label for="mean_sea_level_pressure_MSL" class="text-sm font-medium text-gray-700 mb-1">Mean Sea Level Pressure (MSL)</label>
+                <input type="number" step="any" id="mean_sea_level_pressure_MSL" name="mean_sea_level_pressure_MSL" placeholder="e.g., 1012.5" required
+                       class="p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 shadow-sm">
+            </div>
+
+            <!-- Input Field: Total Precipitation -->
+            <div class="flex flex-col">
+                <label for="total_precipitation_sfc" class="text-sm font-medium text-gray-700 mb-1">Total Precipitation (surface)</label>
+                <input type="number" step="any" id="total_precipitation_sfc" name="total_precipitation_sfc" placeholder="e.g., 0.1" required
+                       class="p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 shadow-sm">
+            </div>
+
+            <!-- Input Field: Wind Speed 10m -->
+            <div class="flex flex-col">
+                <label for="wind_speed_10_m_above_gnd" class="text-sm font-medium text-gray-700 mb-1">Wind Speed (10m above ground)</label>
+                <input type="number" step="any" id="wind_speed_10_m_above_gnd" name="wind_speed_10_m_above_gnd" placeholder="e.g., 5.8" required
+                       class="p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 shadow-sm">
+            </div>
+
+            <!-- Input Field: Snowfall Amount -->
+            <div class="flex flex-col">
+                <label for="snowfall_amount_sfc" class="text-sm font-medium text-gray-700 mb-1">Snowfall Amount (surface)</label>
+                <input type="number" step="any" id="snowfall_amount_sfc" name="snowfall_amount_sfc" placeholder="e.g., 0.0" required
+                       class="p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 shadow-sm">
+            </div>
+
+            <!-- Input Field: Total Cloud Cover -->
+            <div class="flex flex-col">
+                <label for="total_cloud_cover_sfc" class="text-sm font-medium text-gray-700 mb-1">Total Cloud Cover (surface)</label>
+                <input type="number" step="any" id="total_cloud_cover_sfc" name="total_cloud_cover_sfc" placeholder="e.g., 75.0" required
+                       class="p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 shadow-sm">
+            </div>
+
+            <!-- Input Field: High Cloud Cover -->
+            <div class="flex flex-col">
+                <label for="high_cloud_cover_high_cld_lay" class="text-sm font-medium text-gray-700 mb-1">High Cloud Cover (high layer)</label>
+                <input type="number" step="any" id="high_cloud_cover_high_cld_lay" name="high_cloud_cover_high_cld_lay" placeholder="e.g., 30.0" required
+                       class="p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 shadow-sm">
+            </div>
+
+            <!-- Input Field: Medium Cloud Cover -->
+            <div class="flex flex-col">
+                <label for="medium_cloud_cover_medium_cld_lay" class="text-sm font-medium text-gray-700 mb-1">Medium Cloud Cover (medium layer)</label>
+                <input type="number" step="any" id="medium_cloud_cover_medium_cld_lay" name="medium_cloud_cover_medium_cld_lay" placeholder="e.g., 20.0" required
+                       class="p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 shadow-sm">
+            </div>
+
+            <!-- Input Field: Low Cloud Cover -->
+            <div class="flex flex-col">
+                <label for="low_cloud_cover_low_cld_lay" class="text-sm font-medium text-gray-700 mb-1">Low Cloud Cover (low layer)</label>
+                <input type="number" step="any" id="low_cloud_cover_low_cld_lay" name="low_cloud_cover_low_cld_lay" placeholder="e.g., 10.0" required
+                       class="p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 shadow-sm">
+            </div>
+
+            <!-- Input Field: Shortwave Radiation Flux -->
+            <div class="flex flex-col">
+                <label for="shortwave_radiation_flux_sfc" class="text-sm font-medium text-gray-700 mb-1">Shortwave Radiation Flux (surface)</label>
+                <input type="number" step="any" id="shortwave_radiation_flux_sfc" name="shortwave_radiation_flux_sfc" placeholder="e.g., 500.0" required
+                       class="p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 shadow-sm">
+            </div>
+
+            <!-- Input Field: Wind Direction 10m -->
+            <div class="flex flex-col">
+                <label for="wind_direction_10_m_above_gnd" class="text-sm font-medium text-gray-700 mb-1">Wind Direction (10m above ground)</label>
+                <input type="number" step="any" id="wind_direction_10_m_above_gnd" name="wind_direction_10_m_above_gnd" placeholder="e.g., 180.0" required
+                       class="p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 shadow-sm">
+            </div>
+
+            <!-- Input Field: Wind Direction 80m -->
+            <div class="flex flex-col">
+                <label for="wind_direction_80_m_above_gnd" class="text-sm font-medium text-gray-700 mb-1">Wind Direction (80m above ground)</label>
+                <input type="number" step="any" id="wind_direction_80_m_above_gnd" name="wind_direction_80_m_above_gnd" placeholder="e.g., 190.0" required
+                       class="p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 shadow-sm">
+            </div>
+
+            <!-- Input Field: Wind Gust Speed 10m -->
+            <div class="flex flex-col">
+                <label for="win_gust_speed_10_m_above_gnd" class="text-sm font-medium text-gray-700 mb-1">Wind Gust Speed (10m above ground)</label>
+                <input type="number" step="any" id="win_gust_speed_10_m_above_gnd" name="win_gust_speed_10_m_above_gnd" placeholder="e.g., 10.5" required
+                       class="p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 shadow-sm">
+            </div>
+
+            <!-- Input Field: Angle of Incidence -->
+            <div class="flex flex-col">
+                <label for="angle_of_incidence_sfc" class="text-sm font-medium text-gray-700 mb-1">Angle of Incidence (surface)</label>
+                <input type="number" step="any" id="angle_of_incidence_sfc" name="angle_of_incidence_sfc" placeholder="e.g., 45.0" required
+                       class="p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 shadow-sm">
+            </div>
+
+            <!-- Input Field: Zenith -->
+            <div class="flex flex-col">
+                <label for="zenith_sfc" class="text-sm font-medium text-gray-700 mb-1">Zenith (surface)</label>
+                <input type="number" step="any" id="zenith_sfc" name="zenith_sfc" placeholder="e.g., 30.0" required
+                       class="p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 shadow-sm">
+            </div>
+
+            <!-- Input Field: Azimuth -->
+            <div class="flex flex-col">
+                <label for="azimuth_sfc" class="text-sm font-medium text-gray-700 mb-1">Azimuth (surface)</label>
+                <input type="number" step="any" id="azimuth_sfc" name="azimuth_sfc" placeholder="e.g., 90.0" required
+                       class="p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 shadow-sm">
+            </div>
+
+            <!-- Submit Button -->
+            <div class="md:col-span-2 flex justify-center mt-6">
+                <button type="submit"
+                        class="px-8 py-4 bg-green-600 text-white font-semibold text-lg rounded-lg shadow-lg hover:bg-green-700 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-75 transform hover:scale-105">
+                    Get Prediction
+                </button>
+            </div>
+        </form>
+
+        <!-- Display results_score if available -->
+        {% if results_score %}
+        <p class="mt-8 text-center text-red-600 font-semibold text-lg">
+            {{ results_score }}
+        </p>
+        {% endif %}
+    </div>
+
+</body>
+</html>
